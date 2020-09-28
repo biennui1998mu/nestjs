@@ -10,5 +10,5 @@ PORT=3000
 DB_TYPE=mongodb
 DB_HOST=NOsama
 DB_NAME=nestjs-test
-DB_USER=songokun98@gmail.com
-DB_PASSWORD=mu0309198
+DB_USER=sgk
+DB_PASSWORD=
