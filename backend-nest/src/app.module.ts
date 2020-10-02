@@ -1,8 +1,8 @@
-import { Module } from 'src/api/auth/node_modules/@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { MongooseModule } from 'src/api/auth/node_modules/@nestjs/mongoose';
-import { TasksModule } from './tasks/tasks.module';
 import { AuthModule } from './api/auth/auth.module';
+import { TasksModule } from './api/tasks/tasks.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Module } from '@nestjs/common';
 
 const username = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
