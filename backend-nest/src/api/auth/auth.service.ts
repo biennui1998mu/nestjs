@@ -29,15 +29,15 @@ export class AuthService {
     if (!gmail || typeof gmail !== 'string' || gmail.length === 0) {
       return {
         message: 'Gmail field is empty!',
-        data: null
-      }
+        data: null,
+      };
     }
 
     if (!password || typeof password !== 'string' || password.length === 0) {
       return {
         message: 'Password field is empty!',
-        data: null
-      }
+        data: null,
+      };
     }
 
     const exist = await this.userModel.findOne({ gmail: gmail }).exec();
@@ -45,8 +45,8 @@ export class AuthService {
     if (exist) {
       return {
         message: 'Gmail is exist!',
-        data: null
-      }
+        data: null,
+      };
     }
 
     // const salt = await bcrypt.genSalt();
@@ -62,8 +62,8 @@ export class AuthService {
     if (!saved) {
       return {
         message: 'Create new user fail!',
-        data: null
-      }
+        data: null,
+      };
     }
 
     /**
@@ -85,15 +85,15 @@ export class AuthService {
     if (!gmail || typeof gmail !== 'string' || gmail.length === 0) {
       return {
         message: 'Gmail field is empty!',
-        data: null
-      }
+        data: null,
+      };
     }
 
     if (!password || typeof password !== 'string' || password.length === 0) {
       return {
         message: 'Password field is empty!',
-        data: null
-      }
+        data: null,
+      };
     }
 
     const user = await this.userModel
@@ -104,8 +104,8 @@ export class AuthService {
     if (!user) {
       return {
         message: 'User does not exist in database',
-        data: null
-      }
+        data: null,
+      };
     }
 
     const validatePassword = await bcrypt.compare(password, user.password);
@@ -113,8 +113,8 @@ export class AuthService {
     if (!validatePassword) {
       return {
         message: 'Password does not match!',
-        data: null
-      }
+        data: null,
+      };
     }
 
     const payload = { gmail };
