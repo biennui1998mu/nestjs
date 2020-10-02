@@ -10,10 +10,13 @@ export const userSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
-  status: {
-    type: String,
-    enum: ['ONLINE', 'OFFLINE', 'BUSY'],
-    default: 'ONLINE',
+  // status: {
+  //   type: String,
+  //   enum: ['ONLINE', 'OFFLINE', 'BUSY']
+  // },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 });
 
@@ -21,11 +24,11 @@ export interface User extends mongoose.Document {
   id: string;
   gmail: string;
   password: string;
-  status: userStatus;
+  // status: userStatus;
 }
 
-export enum userStatus {
-  ONLINE = 'ONLINE',
-  OFFLINE = 'OFFLINE',
-  BUSY = 'BUSY',
-}
+// export enum userStatus {
+//   ONLINE = 'ONLINE',
+//   OFFLINE = 'OFFLINE',
+//   BUSY = 'BUSY',
+// }

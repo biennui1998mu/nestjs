@@ -4,9 +4,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TasksModule } from './tasks/tasks.module';
 import { AuthModule } from './auth/auth.module';
 
-const username = 'biennui198mu';
-const password = 'mu0309198';
-const dbName = 'nestjs';
+const username = process.env.DB_USER;
+const password = process.env.DB_PASSWORD;
+const dbName = process.env.DB_NAME;
 
 @Module({
   imports: [

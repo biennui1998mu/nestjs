@@ -1,4 +1,3 @@
-import { IsNotEmpty } from 'class-validator';
 import * as mongoose from 'mongoose';
 
 export const taskSchema = new mongoose.Schema({
@@ -22,15 +21,10 @@ export const taskSchema = new mongoose.Schema({
  * But @IsNotEmpty() is from class-validator 
  * interface change to class
  */
-export class Task extends mongoose.Document{
+export interface Task extends mongoose.Document{
   id: string;
-
-  // @IsNotEmpty({message: 'title must have some letter'})
   title: string;
-
-  // @IsNotEmpty()
   description: string;
-
   status: taskStatus;
 }
 

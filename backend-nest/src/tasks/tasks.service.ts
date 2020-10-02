@@ -1,7 +1,7 @@
 import { createTask_dto } from './DTO/createTask.dto';
 import { Task, taskStatus } from './tasks.model';
 import { InjectModel } from '@nestjs/mongoose';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { stringify } from 'querystring';
 
@@ -11,8 +11,9 @@ export class TasksService {
 
   async getAllTasks() {
     const tasks = await this.taskModel.find().exec();
+    
     if (!tasks || tasks.length < 1) {
-      throw new NotFoundException();
+      throw new BadRequestException('Storage of task is empty!');
     }
     return tasks as Task[];
   }
@@ -24,7 +25,7 @@ export class TasksService {
     const { title, description } = createTask_dto;
 
     if (!title || typeof title !== 'string' || title.length === 0) {
-      throw new NotFoundException('title is empty');
+      throw new BadRequestException('Title field is empty');
     }
 
     if (
@@ -32,7 +33,7 @@ export class TasksService {
       typeof description !== 'string' ||
       description.length === 0
     ) {
-      throw new NotFoundException('description is empty');
+      throw new BadRequestException('Description field is empty');
     }
 
     const newTask = new this.taskModel({
@@ -43,7 +44,7 @@ export class TasksService {
     const saved = await newTask.save();
 
     if (!saved) {
-      throw new NotFoundException();
+      throw new BadRequestException('Save new task error');
     }
 
     return newTask as Task;
@@ -53,7 +54,7 @@ export class TasksService {
     const task = await this.taskModel.findById(id).exec();
 
     if (!task) {
-      throw new NotFoundException();
+      throw new NotFoundException('Get task fail!');
     }
     return task as Task;
   }
@@ -66,7 +67,7 @@ export class TasksService {
     const task = await this.getTask(id);
 
     if (!task) {
-      throw new NotFoundException();
+      throw new NotFoundException('Get task fail!');
     }
 
     const { title, description } = createTask_dto;
@@ -85,6 +86,10 @@ export class TasksService {
 
     const updated = await task.save();
 
+    if(!updated){
+      throw new BadRequestException('Updated task fail!');
+    }
+
     return updated as Task;
   }
 
@@ -92,7 +97,7 @@ export class TasksService {
     const task = await this.getTask(id);
 
     if (!task) {
-      throw new NotFoundException();
+      throw new NotFoundException('Get task fail!');
     }
 
     const deleted = await task.remove();
@@ -114,8 +119,11 @@ export class TasksService {
       })
       .exec();
 
+      console.log(tasks);
+      
+
     if (!tasks || tasks.length < 1) {
-      throw new NotFoundException('array empty');
+      throw new BadRequestException('Array empty');
     }
 
     return tasks as Task[];
