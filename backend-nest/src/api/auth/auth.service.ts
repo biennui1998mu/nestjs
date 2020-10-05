@@ -11,6 +11,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { returnData } from 'src/shared/interface/returnData.interface';
+import { JwtPayload } from 'src/shared/interface/jwt-payload.interface';
 
 @Injectable()
 export class AuthService {
@@ -117,7 +118,7 @@ export class AuthService {
       };
     }
 
-    const payload = { gmail };
+    const payload: JwtPayload = { gmail };
     const token = await this.jwtService.sign(payload);
 
     return {

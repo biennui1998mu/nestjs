@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="box">
+    <div class="image"></div>
+    <div class="form">
+      <div class="login">
+        <form action="">
+          <h1>log in</h1>
+          <div>
+            <span><i class="far fa-envelope"></i></span>
+            <input type="email" name="gmail" [(ngModel)] = "formSignIn.gmail"/>
+          </div>
+          <div>
+            <span><i class="fas fa-lock"></i></span>
+            <input type="password" name="password" [(ngModel)] = "formSignIn.password"/>
+          </div>
+          <button (click)="onSignIn()">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="snack-bar" *ngIf= "show">
+    {{message}}
+</div>

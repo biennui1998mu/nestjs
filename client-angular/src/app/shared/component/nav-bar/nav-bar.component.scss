@@ -1,0 +1,55 @@
+.container {
+  width: 100%;
+  height: max-content;
+  padding: 1rem 20%;
+  background: black;
+
+  .box {
+    // border: 1px solid black;
+    border-radius: 4px;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto max-content;
+    color: white;
+
+
+    .redirect {
+      padding: 0;
+      margin: 0;
+    }
+
+    .search-bar {
+      border: 1px solid black;
+      border-radius: 4px;
+      width: 15rem;
+      display: grid;
+      grid-template-columns: auto max-content;
+      margin: auto 1rem;
+
+      .input-custom {
+        width: auto;
+        height: auto;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 0 0.5rem;
+
+        &:focus{
+            background: white;
+        }
+      }
+      .btn-search {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        border-left: 1px solid black;
+        padding: 0.5rem;
+        outline: none;
+        width: max-content;
+        height: max-content;
+        color: white;
+      }
+    }
+  }
+}

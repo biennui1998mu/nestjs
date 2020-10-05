@@ -18,6 +18,6 @@ const dbName = process.env.DB_NAME;
       `mongodb+srv://${username}:${password}@nosama.dstgw.gcp.mongodb.net/${dbName}?retryWrites=true&w=majority`,
     ),
     AuthModule,
-  ],
+  ]
 })
 export class AppModule {}
